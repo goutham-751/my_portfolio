@@ -1,0 +1,51 @@
+.contact {
+  padding: 6rem 2rem;
+  background: var(--bg-primary);
+}
+
+.contact-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-social-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.contact-link {
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  background: var(--accent-color);
+  transition: background 0.3s, color 0.3s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-link.linkedin {
+  background: #0077b5;
+}
+
+.contact-link.github {
+  background: #24292e;
+}
+
+.contact-link:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .contact {
+    padding: 4rem 1rem;
+  }
+  .contact-social-links {
+    gap: 1rem;
+  }
+} 
