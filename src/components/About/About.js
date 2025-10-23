@@ -73,14 +73,12 @@ const About = () => {
               <li>Python</li>
               <li>SQL</li>
               <li>Data Visualization</li>
-              <li>Windows OS</li>
+              <li>Tableau</li>
               <li>Linux</li>
               <li>Cisco Routers & Switches</li>
               <li>Project Management</li>
-              <li>Teamwork</li>
-              <li>Problem Solving</li>
-              <li>Customer Dedication</li>
-              <li>Wireless Networking</li>
+              <li>Natural Language Processing</li>
+              
             </ul>
           </motion.div>
         </div>
