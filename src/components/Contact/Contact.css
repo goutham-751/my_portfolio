@@ -41,11 +41,45 @@
   opacity: 0.85;
 }
 
+/* Mobile devices */
 @media (max-width: 768px) {
   .contact {
     padding: 4rem 1rem;
   }
+
+  .contact-container {
+    padding: 0 1rem;
+  }
+
   .contact-social-links {
     gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    padding: 0.45rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .contact {
+    padding: 3rem 0.75rem;
+  }
+
+  .contact-container {
+    padding: 0;
+  }
+
+  .contact-social-links {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+
+  .contact-link {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
   }
 } 

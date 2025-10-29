@@ -154,7 +154,8 @@
   }
 }
 
-@media (max-width: 480px) {
+/* Mobile devices */
+@media (max-width: 768px) {
   .about {
     padding: 4rem 1rem;
   }
@@ -165,6 +166,91 @@
 
   .skills-section h3 {
     font-size: 1.8rem;
+  }
+
+  .about-profile-img.large {
+    width: 100px;
+    height: 100px;
+  }
+
+  .about-name {
+    font-size: 1.3rem;
+  }
+
+  .about-title {
+    font-size: 0.95rem;
+  }
+
+  .about-text.professional {
+    font-size: 1rem;
+  }
+
+  .skills-section.professional h3 {
+    font-size: 1.2rem;
+  }
+
+  .about-link {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 3rem 0.75rem;
+  }
+
+  .about-content h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .skills-section h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-profile-img.large {
+    width: 90px;
+    height: 90px;
+  }
+
+  .about-name {
+    font-size: 1.2rem;
+  }
+
+  .about-title {
+    font-size: 0.9rem;
+  }
+
+  .about-text.professional {
+    font-size: 0.95rem;
+    padding: 1rem 0.9rem 0.9rem 0.9rem;
+  }
+
+  .skills-section.professional {
+    padding: 1rem 0.9rem 1.2rem 0.9rem;
+  }
+
+  .skills-section.professional h3 {
+    font-size: 1.1rem;
+  }
+
+  .about-link {
+    padding: 0.35rem 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  .skill-item {
+    padding: 0.8rem;
+  }
+
+  .skill-info {
+    font-size: 0.95rem;
+  }
+
+  .skills-list {
+    font-size: 1rem;
   }
 }
 

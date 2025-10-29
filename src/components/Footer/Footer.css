@@ -34,9 +34,14 @@
   font-size: 0.9rem;
 }
 
+/* Mobile devices */
 @media (max-width: 768px) {
   .footer {
     padding: 1.5rem 0;
+  }
+
+  .footer-container {
+    padding: 0 1rem;
   }
 
   .social-links {
@@ -45,5 +50,32 @@
 
   .social-links a {
     font-size: 1.3rem;
+  }
+
+  .copyright {
+    font-size: 0.85rem;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .footer {
+    padding: 1.25rem 0;
+  }
+
+  .footer-container {
+    padding: 0 0.75rem;
+  }
+
+  .social-links {
+    gap: 1.25rem;
+  }
+
+  .social-links a {
+    font-size: 1.2rem;
+  }
+
+  .copyright {
+    font-size: 0.8rem;
   }
 } 
