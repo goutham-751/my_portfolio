@@ -1,0 +1,212 @@
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: 120px;
+    padding-bottom: var(--space-10);
+}
+
+.hero__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+/* Micro label */
+.hero__label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    letter-spacing: 0.12em;
+}
+
+/* Headline */
+.hero__headline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.hero__line1 {
+    font-size: clamp(48px, 7vw, 80px);
+    color: var(--text-primary);
+}
+
+.hero__line2 {
+    font-size: clamp(40px, 6vw, 64px);
+    color: var(--text-secondary);
+    font-weight: 700;
+}
+
+.hero__line3 {
+    font-size: clamp(40px, 6vw, 64px);
+    color: var(--accent-signal);
+}
+
+/* Bio */
+.hero__bio {
+    font-size: 17px;
+    color: var(--text-secondary);
+    max-width: 560px;
+    line-height: 1.75;
+}
+
+/* Tech strip */
+.hero__strip {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.hero__strip-sep {
+    width: 1px;
+    height: 14px;
+    background: var(--border-subtle);
+}
+
+.hero__strip-item {
+    white-space: nowrap;
+}
+
+/* CTAs */
+.hero__ctas {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-2);
+}
+
+.hero__cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--accent-signal);
+    color: var(--accent-signal);
+    text-decoration: none;
+    font-size: 13px;
+    transition: background 0.2s ease;
+}
+
+.hero__cta-primary:hover {
+    background: rgba(77, 255, 196, 0.1);
+}
+
+.hero__arrow {
+    transition: transform 0.2s ease;
+}
+
+.hero__cta-primary:hover .hero__arrow {
+    transform: translateX(4px);
+}
+
+.hero__cta-secondary {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.hero__cta-secondary:hover {
+    color: var(--text-primary);
+}
+
+/* =====================================================
+   ROTATING CIRCULAR TEXT
+   ===================================================== */
+.hero__orbit {
+    position: absolute;
+    bottom: var(--space-10);
+    right: var(--space-10);
+    width: 200px;
+    height: 200px;
+}
+
+.hero__orbit-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(77, 255, 196, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero__orbit-svg {
+    animation: orbit-spin 20s linear infinite;
+}
+
+.hero__orbit-text {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    fill: var(--text-ghost);
+    letter-spacing: 0.1em;
+}
+
+@keyframes orbit-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 1024px) {
+    .hero__orbit {
+        right: var(--space-5);
+        bottom: var(--space-5);
+        width: 160px;
+        height: 160px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 96px;
+        min-height: 100svh;
+    }
+
+    .hero__line1 {
+        font-size: 40px;
+        line-height: 1.1;
+    }
+
+    .hero__line2,
+    .hero__line3 {
+        font-size: 36px;
+        line-height: 1.1;
+    }
+
+    .hero__bio {
+        font-size: 15px;
+    }
+
+    .hero__orbit {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        width: 120px;
+        height: 120px;
+        margin-top: var(--space-4);
+    }
+
+    .hero__ctas {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-2);
+    }
+}

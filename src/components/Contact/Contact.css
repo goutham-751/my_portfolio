@@ -1,85 +1,111 @@
+/* =====================================================
+   CONTACT
+   ===================================================== */
+
 .contact {
-  padding: 6rem 2rem;
-  background: var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
 }
 
-.contact-container {
-  max-width: 800px;
-  margin: 0 auto;
+.contact__inner {
+  text-align: center;
 }
 
-.contact-social-links {
+.contact__content {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
 }
 
-.contact-link {
-  padding: 0.5rem 1.2rem;
-  border-radius: 20px;
-  font-weight: 600;
+/* Availability signal */
+.contact__signal {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 12px;
+  color: var(--accent-alert);
+  letter-spacing: 0.08em;
+}
+
+.contact__pulse {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-alert);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Email */
+.contact__email {
+  font-size: clamp(24px, 3.5vw, 48px);
+  color: var(--text-primary);
   text-decoration: none;
-  color: #fff;
-  background: var(--accent-color);
-  transition: background 0.3s, color 0.3s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-bottom: 2px solid var(--accent-signal);
+  padding-bottom: 4px;
+  transition: color 0.15s ease, border-bottom-width 0.15s ease;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+.contact__email:hover {
+  color: var(--accent-signal);
+  border-bottom-width: 3px;
+}
+
+/* Phone */
+.contact__phone {
+  font-size: 15px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.15s ease;
+}
+
+.contact__phone:hover {
+  color: var(--text-primary);
+}
+
+/* Social links */
+.contact__links {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: var(--space-2);
+  font-size: 13px;
 }
 
-.contact-link.linkedin {
-  background: #0077b5;
+.contact__sep {
+  color: var(--text-ghost);
 }
 
-.contact-link.github {
-  background: #24292e;
+.contact__social {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease;
 }
 
-.contact-link:hover {
-  opacity: 0.85;
+.contact__social:hover {
+  color: var(--text-primary);
 }
 
-/* Mobile devices */
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
 @media (max-width: 768px) {
-  .contact {
-    padding: 4rem 1rem;
-  }
-
-  .contact-container {
-    padding: 0 1rem;
-  }
-
-  .contact-social-links {
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .contact-link {
-    padding: 0.45rem 1rem;
-    font-size: 0.9rem;
+  .contact__email {
+    font-size: 20px;
+    white-space: normal;
+    word-break: break-all;
   }
 }
-
-/* Small phones */
-@media (max-width: 480px) {
-  .contact {
-    padding: 3rem 0.75rem;
-  }
-
-  .contact-container {
-    padding: 0;
-  }
-
-  .contact-social-links {
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: stretch;
-  }
-
-  .contact-link {
-    padding: 0.4rem 0.9rem;
-    font-size: 0.85rem;
-  }
-} 

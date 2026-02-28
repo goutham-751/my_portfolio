@@ -1,90 +1,89 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import './About.css';
 
-const About = () => {
-  const skills = [
-    { name: 'Machine Learning', level: 50 },
-    { name: 'Data Analysis', level: 60 },
-    { name: 'Python', level: 58 },
-    { name: 'SQL', level: 52 },
-    { name: 'Data Visualization', level: 56 },
-    { name: 'Deep Learning', level: 30 }
-  ];
+const skills = [
+  { domain: 'Languages', stack: 'Python · JavaScript · Java · C/C++ · SQL · R' },
+  { domain: 'Frameworks', stack: 'React · Streamlit · FastAPI' },
+  { domain: 'Dev Tools', stack: 'AWS · GitHub · Docker · VS Code · PyCharm' },
+  { domain: 'Libraries', stack: 'Pandas · NumPy · Matplotlib · Seaborn · Bootstrap · TensorFlow' },
+  { domain: 'Security', stack: 'CTF · Community · Fundamentals' },
+];
 
+const education = [
+  {
+    period: '2023 – 2027',
+    institution: 'Vellore Institute of Technology, Chennai',
+    degree: 'B.Tech Computer Science Engineering (Data Science)',
+    score: 'CGPA: 8.83 / 10',
+  },
+  {
+    period: '2022 – 2023',
+    institution: 'Adhyapana School, Madurai',
+    degree: '12th Class',
+    score: 'Percentage: 94.2%',
+  },
+];
+
+function About() {
   return (
     <section className="about" id="about">
-      <div className="about-container">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          About Me
-        </motion.h2>
-        <div className="about-cards-grid">
-          <motion.div
-            className="about-card profile-card"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            <img src={process.env.PUBLIC_URL + '/WhatsApp Image 2025-06-17 at 16.12.05_ad7fa56b.jpg'} alt="Goutham Kumar" className="about-profile-img large" />
-            <h3 className="about-name">Goutham Kumar</h3>
-            <p className="about-title">Data Scientist & Machine Learning Engineer</p>
-            <div className="about-links professional">
-              <a href="https://www.linkedin.com/in/goutham-kumar7" target="_blank" rel="noopener noreferrer" className="about-link linkedin">LinkedIn</a>
-              <a href="https://github.com/goutham-751" target="_blank" rel="noopener noreferrer" className="about-link github">GitHub</a>
-              <a href="mailto:kgoutham2k5@gmail.com" className="about-link gmail">Gmail</a>
+      <div className="container">
+        <p className="section-label reveal">04 ── ABOUT</p>
+
+        <div className="about__split">
+          {/* Bio */}
+          <div className="about__bio reveal">
+            <p className="text-body about__bio-text">
+              I'm Goutham — a CS and Data Science student at VIT Chennai,
+              building at the edge of systems, ML, and product. I've analysed
+              dose data at a nuclear research facility, shipped AI platforms
+              people actually use, and won bounties for blockchain systems that
+              solve real economic problems for gig workers.
+            </p>
+            <p className="text-body about__bio-text">
+              I care about work that has stakes. Software that runs something
+              important. Systems that hold.
+            </p>
+
+            {/* Education */}
+            <div className="about__education">
+              <h3 className="about__edu-title text-mono">EDUCATION</h3>
+              {education.map((edu) => (
+                <div key={edu.institution} className="about__edu-row">
+                  <div className="about__edu-header">
+                    <span className="about__edu-degree text-mono">{edu.degree}</span>
+                    <span className="about__edu-period text-mono">{edu.period}</span>
+                  </div>
+                  <span className="about__edu-institution text-mono">{edu.institution}</span>
+                  <span className="about__edu-score text-mono">{edu.score}</span>
+                </div>
+              ))}
             </div>
-          </motion.div>
-          <motion.div
-            className="about-card about-text-card"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <p>
-              Hi, I'm Goutham Kumar, an aspiring Data Scientist and Machine Learning Engineer with a passion for transforming complex data into actionable insights. My journey in data science has been driven by a deep curiosity about how machine learning can solve real-world problems and create meaningful impact.
-            </p>
-            <p>
-              I specialize in developing predictive models, conducting thorough data analysis, and creating intuitive data visualizations. My projects span across various domains including customer behavior analysis, sentiment analysis, and healthcare predictions. I'm particularly interested in exploring the intersection of machine learning and business intelligence to drive data-driven decision making.
-            </p>
-            <p>
-              As a continuous learner, I'm constantly expanding my knowledge in emerging technologies and methodologies in the field of data science. I believe in the power of data to tell stories and solve complex problems, and I'm excited to contribute to innovative solutions that make a difference.
-            </p>
-          </motion.div>
-          <motion.div
-            className="about-card skills-card"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <h3>Skills</h3>
-            <ul className="skills-list">
-              <li>Networking</li>
-              <li>Data Analysis</li>
-              <li>Machine Learning</li>
-              <li>Deep Learning</li>
-              <li>Python</li>
-              <li>SQL</li>
-              <li>Data Visualization</li>
-              <li>Tableau</li>
-              <li>Linux</li>
-              <li>Cisco Routers & Switches</li>
-              <li>Project Management</li>
-              <li>Natural Language Processing</li>
-              
-            </ul>
-          </motion.div>
+          </div>
+
+          {/* Skills table */}
+          <div className="about__skills reveal">
+            <table className="skills-table text-mono">
+              <thead>
+                <tr>
+                  <th className="skills-table__header">DOMAIN</th>
+                  <th className="skills-table__header">STACK</th>
+                </tr>
+              </thead>
+              <tbody>
+                {skills.map((row) => (
+                  <tr key={row.domain} className="skills-table__row">
+                    <td className="skills-table__domain">{row.domain}</td>
+                    <td className="skills-table__stack">{row.stack}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
   );
-};
+}
 
-export default About; 
+export default About;

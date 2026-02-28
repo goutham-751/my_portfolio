@@ -1,22 +1,38 @@
 import React from 'react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import './Contact.css';
 
-const Contact = () => {
+function Contact() {
   return (
     <section className="contact" id="contact">
-      <div className="contact-container">
-        <div className="contact-social-links">
-          <a href="https://www.linkedin.com/in/goutham-kumar7" target="_blank" rel="noopener noreferrer" className="contact-link linkedin" aria-label="LinkedIn">
-            <FaLinkedin size={32} />
+      <div className="container contact__inner">
+        <p className="section-label reveal">05 ── LET'S TALK</p>
+
+        <div className="contact__content reveal">
+          {/* Availability signal */}
+          <div className="contact__signal text-mono">
+            <span className="contact__pulse" />
+            OPEN TO OPPORTUNITIES
+          </div>
+
+          {/* Email */}
+          <a href="mailto:kgoutham2k5@gmail.com" className="contact__email text-display">
+            kgoutham2k5@gmail.com
           </a>
-          <a href="https://github.com/goutham-751" target="_blank" rel="noopener noreferrer" className="contact-link github" aria-label="GitHub">
-            <FaGithub size={32} />
-          </a>
+
+
+
+          {/* Social links */}
+          <div className="contact__links text-mono">
+            <a href="https://github.com/goutham-751" className="contact__social" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <span className="contact__sep">·</span>
+            <a href="https://linkedin.com/in/goutham-kumar7" className="contact__social" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <span className="contact__sep">·</span>
+            <a href="/resume.pdf" className="contact__social" target="_blank" rel="noopener noreferrer">Resume PDF</a>
+          </div>
         </div>
       </div>
     </section>
   );
-};
+}
 
-export default Contact; 
+export default Contact;

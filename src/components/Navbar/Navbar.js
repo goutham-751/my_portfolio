@@ -1,73 +1,78 @@
 import React, { useState, useEffect } from 'react';
-import { FaMoon, FaSun, FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
 
-const Navbar = ({ darkMode, toggleDarkMode }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+function Navbar({ onNavigate }) {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false); // Close mobile menu after clicking
-    }
+  const links = [
+    { label: 'Work', idx: 1 },
+    { label: 'Research', idx: 2 },
+    { label: 'About', idx: 3 },
+    { label: 'Contact', idx: 4 },
+  ];
+
+  const handleNav = (idx) => {
+    onNavigate(idx);
+    setMenuOpen(false);
   };
 
   return (
     <>
-      <div 
-        className={`mobile-menu-overlay ${isMobileMenuOpen ? 'active' : ''}`}
-        onClick={() => setIsMobileMenuOpen(false)}
-      ></div>
-      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="navbar-container">
-          <div className="navbar-social-links">
-            <a href="https://www.linkedin.com/in/goutham-kumar7" target="_blank" rel="noopener noreferrer" className="navbar-social-link linkedin">www.linkedin.com/in/goutham-kumar7</a>
-            <a href="https://github.com/goutham-751" target="_blank" rel="noopener noreferrer" className="navbar-social-link github">@goutham-751</a>
-            <a href="mailto:kgoutham2k5@gmail.com" className="navbar-social-link gmail">kgoutham2k5@gmail.com</a>
-          </div>
-          <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
-            <a href="#" onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('home');
-            }}>Home</a>
-            <a href="#" onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('about');
-            }}>About</a>
-            <a href="#" onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('projects');
-            }}>Projects</a>
-            <a href="#" onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('contact');
-            }}>Contact</a>
-            <button className="theme-toggle" onClick={toggleDarkMode}>
-              {darkMode ? <FaSun /> : <FaMoon />}
-            </button>
-          </div>
-          <button 
-            className="mobile-menu-toggle" 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
+      <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
+        <div className="navbar__inner">
+          <button className="navbar__monogram" onClick={() => onNavigate(0)} aria-label="Go to top">
+            GK
+          </button>
+          <nav className="navbar__links" aria-label="Main navigation">
+            {links.map((link, i) => (
+              <React.Fragment key={link.label}>
+                {i > 0 && <span className="navbar__sep">·</span>}
+                <button className="navbar__link" onClick={() => handleNav(link.idx)}>
+                  {link.label}
+                </button>
+              </React.Fragment>
+            ))}
+          </nav>
+          <button
+            className="navbar__menu-toggle"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
           >
-            {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+            Menu
           </button>
         </div>
-      </nav>
+      </header>
+
+      {/* Mobile overlay */}
+      <div className={`navbar__overlay${menuOpen ? ' open' : ''}`}>
+        <button
+          className="navbar__overlay-close"
+          onClick={() => setMenuOpen(false)}
+          aria-label="Close menu"
+        >
+          Close
+        </button>
+        <nav className="navbar__overlay-links">
+          {links.map((link) => (
+            <button
+              key={link.label}
+              className="navbar__overlay-link"
+              onClick={() => handleNav(link.idx)}
+            >
+              {link.label}
+            </button>
+          ))}
+        </nav>
+      </div>
     </>
   );
-};
+}
 
-export default Navbar; 
+export default Navbar;
