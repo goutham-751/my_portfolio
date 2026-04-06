@@ -39,6 +39,10 @@ function Navbar({ onNavigate }) {
                 </button>
               </React.Fragment>
             ))}
+            <span className="navbar__sep">·</span>
+            <a href="/resume.pdf" download="Goutham_Kumar_Resume.pdf" className="navbar__link" style={{ textDecoration: 'none', color: 'var(--accent-warm)' }}>
+              Resume ↓
+            </a>
           </nav>
           <button
             className="navbar__menu-toggle"
@@ -69,6 +73,15 @@ function Navbar({ onNavigate }) {
               {link.label}
             </button>
           ))}
+          <a
+            href="/resume.pdf"
+            download="Goutham_Kumar_Resume.pdf"
+            className="navbar__overlay-link"
+            style={{ textDecoration: 'none', color: 'var(--accent-warm)' }}
+            onClick={() => setMenuOpen(false)}
+          >
+            Resume ↓
+          </a>
         </nav>
       </div>
     </>

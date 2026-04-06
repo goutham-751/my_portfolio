@@ -41,8 +41,8 @@ function Hero() {
                     <a href="#work" className="hero__cta-primary text-mono">
                         View Work <span className="hero__arrow">→</span>
                     </a>
-                    <a href="/resume.pdf" className="hero__cta-secondary text-mono" target="_blank" rel="noopener noreferrer">
-                        Download Resume
+                    <a href="/resume.pdf" download="Goutham_Kumar_Resume.pdf" className="hero__cta-secondary text-mono" target="_blank" rel="noopener noreferrer">
+                        Download Resume ↓
                     </a>
                 </div>
             </div>
