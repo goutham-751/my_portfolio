@@ -5,7 +5,7 @@ export const projects = [
     subtitle: "SaaS Platform",
     description: "Production-ready RAG API with multi-tenant data isolation using persistent ChromaDB collections and SQLite/SQLModel. Features a hybrid-search retrieval system (Dense Embeddings + BM25 Sparse Search) with Reciprocal Rank Fusion (RRF). Deployed via Docker on HuggingFace Spaces with API key auth, rate limiting, and TTL caching.",
     techStack: ["HuggingFace", "Docker", "Python", "LangChain", "ChromaDB", "FastAPI", "LLM"],
-    githubLink: "",
+    githubLink: "https://github.com/goutham-751/Multi-tenant-RAG-API",
     demoLink: "https://damn0898-multi-tenant-rag-api.hf.space/",
     color: "#10b981",
     icon: "🐳"
@@ -17,7 +17,7 @@ export const projects = [
     description: "Full-stack web app using React and FastAPI that leverages Groq AI and spaCy NLP to intelligently parse resumes, perform ATS scoring against job descriptions, and generate personalized interview questions. Features voice-based interview simulations, resume optimization feedback, and automated technical assessment generation.",
     techStack: ["React", "Python", "FastAPI", "Groq AI", "spaCy NLP", "Speech Recognition"],
     githubLink: "https://github.com/goutham-751/CAMPUSHIRE.AI1",
-    demoLink: "https://github.com/goutham-751/CAMPUSHIRE.AI1",
+    demoLink: "https://campushire-ai.vercel.app/",
     color: "#7c3aed",
     icon: "🚀"
   },
@@ -28,7 +28,7 @@ export const projects = [
     description: "Full-stack pricing intelligence platform that analyzes competitor pricing, market trends, and demand signals to generate revenue-optimizing price recommendations. FastAPI services for data ingestion, forecasting, and decision logic with a React dashboard. Historical analytics pipeline for demand prediction and price elasticity analysis with Supabase DB.",
     techStack: ["React", "Python", "FastAPI", "Supabase", "Machine Learning"],
     githubLink: "https://github.com/goutham-751/PricePilot-AI",
-    demoLink: "https://github.com/goutham-751/PricePilot-AI",
+    demoLink: "https://drive.google.com/file/d/1LRnWuTEfLZp0mGvRrLpfFXorsNL3j73Z/view?usp=sharing",
     color: "#06b6d4",
     icon: "📊"
   },
