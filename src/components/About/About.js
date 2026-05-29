@@ -4,8 +4,8 @@ import './About.css';
 const skills = [
   { domain: 'Languages', stack: 'Python · JavaScript · Java · C/C++ · SQL · R' },
   { domain: 'Frameworks', stack: 'React · Streamlit · FastAPI' },
-  { domain: 'Dev Tools', stack: 'AWS · GitHub · Docker · VS Code · PyCharm' },
-  { domain: 'Libraries', stack: 'Pandas · NumPy · Matplotlib · Seaborn · Bootstrap · TensorFlow' },
+  { domain: 'Dev Tools', stack: 'AWS · GitHub · Docker · VS Code · PyCharm · HuggingFace' },
+  { domain: 'Libraries', stack: 'Pandas · NumPy · Matplotlib · Seaborn · Bootstrap · TensorFlow · LangChain · ChromaDB' },
   { domain: 'Security', stack: 'CTF · Community · Fundamentals' },
 ];
 

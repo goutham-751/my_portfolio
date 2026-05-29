@@ -1,5 +1,16 @@
 export const projects = [
   {
+    id: 5,
+    title: "Multi-Tenant RAG API",
+    subtitle: "SaaS Platform",
+    description: "Production-ready RAG API with multi-tenant data isolation using persistent ChromaDB collections and SQLite/SQLModel. Features a hybrid-search retrieval system (Dense Embeddings + BM25 Sparse Search) with Reciprocal Rank Fusion (RRF). Deployed via Docker on HuggingFace Spaces with API key auth, rate limiting, and TTL caching.",
+    techStack: ["HuggingFace", "Docker", "Python", "LangChain", "ChromaDB", "FastAPI", "LLM"],
+    githubLink: "",
+    demoLink: "https://damn0898-multi-tenant-rag-api.hf.space/",
+    color: "#10b981",
+    icon: "🐳"
+  },
+  {
     id: 1,
     title: "CAMPUSHIRE.AI",
     subtitle: "AI-Powered Resume & Interview Platform",
@@ -48,8 +59,8 @@ export const projects = [
 export const skills = {
   languages: ["Python", "JavaScript", "Java", "C/C++", "SQL", "R"],
   frameworks: ["React", "Streamlit", "FastAPI"],
-  tools: ["AWS", "GitHub", "Docker", "VS Code", "PyCharm"],
-  libraries: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Bootstrap", "TensorFlow"]
+  tools: ["AWS", "GitHub", "Docker", "VS Code", "PyCharm", "HuggingFace"],
+  libraries: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Bootstrap", "TensorFlow", "LangChain", "ChromaDB"]
 };
 
 export const experience = [
