@@ -4,6 +4,8 @@
 
 .about {
   border-top: 1px solid var(--border-subtle);
+  position: relative;
+  z-index: 1;
 }
 
 .about__split {
@@ -77,11 +79,19 @@
 .about__edu-score {
   font-size: 12px;
   color: var(--accent-signal);
+  /* Teal glow on CGPA */
+  text-shadow: 0 0 12px rgba(77, 255, 196, 0.4);
 }
 
-/* Skills table */
+/* Skills table — glassmorphism panel */
 .about__skills {
   width: 100%;
+  background: rgba(12, 12, 20, 0.65);
+  border: 1px solid rgba(77, 255, 196, 0.07);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: var(--space-4);
+  border-radius: 4px;
 }
 
 .skills-table {
@@ -104,6 +114,11 @@
   padding: var(--space-2) 0;
   border-bottom: 1px solid var(--border-subtle);
   vertical-align: top;
+  transition: background 0.2s ease;
+}
+
+.skills-table__row:hover td {
+  background: rgba(77, 255, 196, 0.03);
 }
 
 .skills-table__domain {

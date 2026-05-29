@@ -1,0 +1,21 @@
+/**
+ * ThreeCanvas CSS
+ * ─────────────────────────────────────────────────────────
+ * The canvas is position: fixed so it stays behind all HTML
+ * content regardless of scroll position.
+ *
+ * z-index: 0 ensures it sits below all section content (z-index: 1+)
+ * pointer-events: none ensures mouse events pass through to HTML
+ * ─────────────────────────────────────────────────────────
+ */
+
+.three-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;   /* click/scroll events pass through to HTML */
+  display: block;
+}

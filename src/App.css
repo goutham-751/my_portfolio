@@ -5,6 +5,7 @@
 .app {
   position: relative;
   min-height: 100vh;
+  /* z-index stacking context — canvas is z:0, everything else is z:1+ */
 }
 
 /* =====================================================
@@ -43,7 +44,8 @@
   transition: color 0.3s ease;
   position: relative;
   z-index: 1;
-  background: var(--bg-void);
+  /* Semi-transparent bg so canvas shows through slightly */
+  background: rgba(5, 5, 10, 0.7);
   padding: var(--space-1) 0;
   cursor: pointer;
 }
@@ -57,9 +59,29 @@
   text-shadow: 0 0 12px rgba(77, 255, 196, 0.4);
 }
 
-/* Content wrapper — offset for rail */
+/* =====================================================
+   MAIN CONTENT — sits above Three.js canvas
+   ===================================================== */
 .main-content {
   margin-left: 80px;
+  position: relative;
+  z-index: 1; /* above the canvas (z-index: 0) */
+}
+
+/* =====================================================
+   SECTION GLASS BACKGROUNDS
+   All sections get semi-transparent dark backgrounds
+   so the Three.js canvas bleeds through while text
+   remains fully readable.
+   ===================================================== */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Inner containers get a subtle glass panel */
+section .container {
+  position: relative;
 }
 
 /* =====================================================

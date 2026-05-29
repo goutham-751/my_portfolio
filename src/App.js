@@ -6,6 +6,7 @@ import Research from './components/Research/Research';
 import About from './components/About/About';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
+import ThreeCanvas from './components/ThreeCanvas/ThreeCanvas';
 import './App.css';
 
 const SECTIONS = ['hero', 'work', 'research', 'about', 'contact'];
@@ -61,6 +62,10 @@ function App() {
 
   return (
     <div className="app">
+      {/* ── Three.js WebGL Canvas — fixed, behind everything ─── */}
+      {/* z-index: 0 — all HTML content is z-index: 1+           */}
+      <ThreeCanvas />
+
       {/* Vertical section rail */}
       <nav className="section-rail" aria-label="Section navigation">
         {SECTIONS.map((_, i) => (

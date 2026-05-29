@@ -1,5 +1,7 @@
 /* =====================================================
-   HERO
+   HERO — 3D Edition
+   Background is transparent — Three.js canvas shows through.
+   Content sits in a glassmorphism card so text stays readable.
    ===================================================== */
 
 .hero {
@@ -9,12 +11,35 @@
     position: relative;
     padding-top: 120px;
     padding-bottom: var(--space-10);
+    /* NO background — let Three.js canvas bleed through */
 }
 
 .hero__inner {
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
+    /* Glass content card — keeps text readable above Three.js scene */
+    background: rgba(5, 5, 10, 0.62);
+    border: 1px solid rgba(77, 255, 196, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 2px;
+    padding: var(--space-8) var(--space-8);
+    max-width: 680px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Teal top-left corner accent line */
+.hero__inner::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--accent-signal);
+    box-shadow: 0 0 12px rgba(77, 255, 196, 0.6);
 }
 
 /* Micro label */
@@ -45,6 +70,8 @@
 .hero__line3 {
     font-size: clamp(40px, 6vw, 64px);
     color: var(--accent-signal);
+    /* Teal glow on the key line */
+    text-shadow: 0 0 32px rgba(77, 255, 196, 0.35);
 }
 
 /* Bio */
@@ -73,6 +100,11 @@
 
 .hero__strip-item {
     white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+.hero__strip-item:hover {
+    color: var(--accent-signal);
 }
 
 /* CTAs */
@@ -92,11 +124,22 @@
     color: var(--accent-signal);
     text-decoration: none;
     font-size: 13px;
+    transition: background 0.2s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero__cta-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(77, 255, 196, 0);
     transition: background 0.2s ease;
 }
 
 .hero__cta-primary:hover {
-    background: rgba(77, 255, 196, 0.1);
+    background: rgba(77, 255, 196, 0.12);
+    box-shadow: 0 0 20px rgba(77, 255, 196, 0.2);
 }
 
 .hero__arrow {
@@ -127,6 +170,8 @@
     right: var(--space-10);
     width: 200px;
     height: 200px;
+    /* Give orbit a glass background so canvas doesn't conflict */
+    z-index: 2;
 }
 
 .hero__orbit-glow {
@@ -137,8 +182,15 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(77, 255, 196, 0.04) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(77, 255, 196, 0.08) 0%, transparent 70%);
     pointer-events: none;
+    /* Pulse animation */
+    animation: orbit-glow-pulse 4s ease-in-out infinite;
+}
+
+@keyframes orbit-glow-pulse {
+    0%, 100% { opacity: 0.4; }
+    50%       { opacity: 1.0; }
 }
 
 .hero__orbit-svg {
@@ -148,18 +200,13 @@
 .hero__orbit-text {
     font-family: var(--font-mono);
     font-size: 9px;
-    fill: var(--text-ghost);
+    fill: rgba(77, 255, 196, 0.4);
     letter-spacing: 0.1em;
 }
 
 @keyframes orbit-spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
 }
 
 /* =====================================================
@@ -172,12 +219,23 @@
         width: 160px;
         height: 160px;
     }
+
+    .hero__inner {
+        padding: var(--space-6) var(--space-5);
+    }
 }
 
 @media (max-width: 768px) {
     .hero {
         padding-top: 96px;
         min-height: 100svh;
+    }
+
+    .hero__inner {
+        max-width: 100%;
+        /* Slightly more opaque on mobile — no backdrop-filter guarantee */
+        background: rgba(5, 5, 10, 0.88);
+        padding: var(--space-5) var(--space-3);
     }
 
     .hero__line1 {
