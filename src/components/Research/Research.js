@@ -1,91 +1,65 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { fadeUp, staggerContainer } from '../../lib/animations';
 import './Research.css';
 
-const researchInterests = {
-    title: "CalibSSL: Reliability and Calibration of Self-Supervised Neural Networks on Tabular Data (Ongoing)",
-    points: [
-        "Designed a calibration-aware training objective combining cross-entropy with entropy-based confidence penalty to reduce prediction overconfidence",
-        "Implemented ViME (Value Imputation and Mask Estimation) for self-supervised pretraining on unlabeled tabular data",
-        "Benchmarked against 6 baselines (RF, XGBoost, MLP variants) across 5 datasets and 5 label-scarcity settings (5%-100%)",
-        "Built a complete experimental pipeline with statistical significance testing (paired t-tests, Wilcoxon, Friedman) and publication-ready visualizations"
-    ]
+const research = {
+  title: 'CalibSSL: Reliability and Calibration of Self-Supervised Neural Networks on Tabular Data',
+  status: 'Under Review (Springer)',
+  abstract: 'Investigating why self-supervised models fail silently on tabular data — and fixing it through calibration-aware training objectives and entropy regularization.',
+  contributions: [
+    'Calibration-aware loss: cross-entropy + entropy-based confidence penalty to reduce overconfidence',
+    'ViME (Value Imputation & Mask Estimation) for SSL pretraining on unlabeled tabular data',
+    'Benchmarked against 6 baselines (RF, XGBoost, MLP variants) across 5 datasets',
+    '5 label-scarcity settings (5%–100%) — 600+ total experiments',
+    'Full statistical significance pipeline: paired t-tests, Wilcoxon, Friedman tests',
+    'Publication-ready visualizations and reproducible experimental pipeline',
+  ],
+  tags: ['Self-Supervised Learning', 'Calibration', 'Tabular Data', 'PyTorch', 'Statistical Testing'],
+  github: 'https://github.com/goutham-751/CalibSSL-Reliability-and-Calibration-of-Self-supervised-Neural-networks-on-Tabular-data-',
 };
 
-const entries = [
-    {
-        year: 'JUN – JUL 2025',
-        title: 'Research Intern — Indira Gandhi Centre for Atomic Research',
-        location: 'Kalpakkam, Chennai',
-        subtitle: 'Completed internship in the Health & Industrial Safety Division, Dept. of Atomic Energy. Performed dose mapping and radiological safety assessment through data collection, preprocessing, and spatial dose analysis. Applied descriptive statistics for trend and variability analysis in radiological monitoring data.',
-        badge: { label: 'DEPT. OF ATOMIC ENERGY', type: 'warm' },
-    },
-    {
-        year: 'JUN 2025 – PRESENT',
-        title: 'Treasurer — CyberSecurity Student Community, VITC',
-        location: 'Chennai',
-        subtitle: 'Handle event expenses and oversee financial budgeting for a 200+ member community. Run hands-on workshops and CTFs; oversee educational content. Coordinate events and mentor junior contributors in cybersecurity fundamentals.',
-        badge: { label: 'LEADERSHIP', type: 'signal' },
-    },
-    {
-        year: '13 JAN 2026',
-        title: '₹50,000 Bounty Winner — DEFY 26 University Hackathon',
-        location: 'ThinkRoot Ventures & Shardeum',
-        subtitle: 'Won bounty for ParaCipher — a decentralized blockchain application automating insurance payments for gig workers through smart contracts.',
-        badge: { label: 'WINNER', type: 'signal' },
-    },
-];
-
 function Research() {
-    return (
-        <section className="research" id="research">
-            <div className="container">
-                <p className="section-label reveal">03 ── RESEARCH & EXPERIENCE</p>
-
-                {/* Research Interests Section */}
-                <div className="research-highlight reveal">
-                    <div className="research-highlight__header">
-                        <h2 className="text-display">Research Interests</h2>
-                        <span className="research__badge research__badge--signal text-mono">ONGOING</span>
-                    </div>
-                    <div className="research-highlight__content">
-                        <h3 className="research-highlight__title text-display">{researchInterests.title}</h3>
-                        <ul className="research-highlight__list text-body">
-                            {researchInterests.points.map((point, index) => (
-                                <li key={index}>
-                                    <span className="list-bullet">◆</span>
-                                    <span>{point}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-
-                {/* Experience Table */}
-                <p className="section-label reveal" style={{ marginTop: 'var(--space-10)' }}>04 ── EXPERIENCE & RECOGNITION</p>
-                <div className="research__table reveal-stagger">
-                    {entries.map((entry) => (
-                        <div key={entry.title} className="research__row reveal">
-                            <div className="research__year-col">
-                                <span className="research__year text-mono">{entry.year}</span>
-                                {entry.location && (
-                                    <span className="research__location text-mono">{entry.location}</span>
-                                )}
-                            </div>
-                            <div className="research__info">
-                                <h3 className="research__title text-display">{entry.title}</h3>
-                                <p className="research__subtitle text-body">{entry.subtitle}</p>
-                            </div>
-                            <div className="research__badge-wrapper">
-                                <span className={`research__badge research__badge--${entry.badge.type} text-mono`}>
-                                    {entry.badge.label}
-                                </span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+  return (
+    <motion.section 
+      className="research" 
+      id="research"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-80px' }}
+    >
+      <div className="container">
+        <span className="section-label" style={{ marginBottom: '1rem', display: 'block' }}>04 — RESEARCH</span>
+        
+        <motion.div variants={fadeUp} className="research__card">
+          <div className="research__header">
+            <span className="research__status text-mono">{research.status}</span>
+          </div>
+          
+          <h3 className="research__title text-display">{research.title}</h3>
+          
+          <p className="research__abstract text-mono">{research.abstract}</p>
+          
+          <ul className="research__contributions text-body">
+            {research.contributions.map((item, idx) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </ul>
+          
+          <div className="research__tags text-mono">
+            {research.tags.map((tag) => (
+              <span key={tag} className="research__tag">{tag}</span>
+            ))}
+          </div>
+          
+          <a href={research.github} className="research__link text-mono" target="_blank" rel="noopener noreferrer">
+            View Code <span>→</span>
+          </a>
+        </motion.div>
+      </div>
+    </motion.section>
+  );
 }
 
 export default Research;

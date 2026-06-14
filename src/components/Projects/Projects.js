@@ -1,100 +1,77 @@
 import React, { useRef } from 'react';
+import { motion } from 'framer-motion';
+import { fadeUp, staggerContainer } from '../../lib/animations';
 import './Projects.css';
 import { projects } from '../../data/projects';
 
-/**
- * Projects — 3D Edition
- * Cards use JavaScript mousemove for per-card dynamic tilt,
- * giving a more precise "following the cursor" feel than pure CSS.
- * On mobile the JS listener simply doesn't register (touch events
- * don't fire mousemove), and CSS handles a simple translateY instead.
- */
 function ProjectCard({ project }) {
   const cardRef = useRef(null);
 
   const handleMouseMove = (e) => {
-    const card = cardRef.current;
-    if (!card) return;
-
-    const rect   = card.getBoundingClientRect();
-    const cx     = rect.left + rect.width  / 2;
-    const cy     = rect.top  + rect.height / 2;
-    const dx     = (e.clientX - cx) / (rect.width  / 2); // -1..1
-    const dy     = (e.clientY - cy) / (rect.height / 2); // -1..1
-
-    // Max tilt 8° horizontal, 5° vertical
-    const rotY =  dx *  8;
-    const rotX = -dy *  5;
-
-    card.style.transform = `
-      perspective(800px)
-      rotateX(${rotX}deg)
-      rotateY(${rotY}deg)
-      translateZ(10px)
-      translateY(-4px)
-    `;
-    // Dynamic glow shifts with cursor
-    card.style.boxShadow = `
-      ${-dx * 8}px ${-dy * 8}px 40px rgba(0,0,0,0.4),
-      0 0 0 1px rgba(77, 255, 196, 0.12),
-      ${dx * 12}px ${dy * 12}px 30px rgba(0,0,0,0.2)
-    `;
-  };
-
-  const handleMouseLeave = () => {
-    const card = cardRef.current;
-    if (!card) return;
-    card.style.transform = '';
-    card.style.boxShadow = '';
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    cardRef.current.style.setProperty('--mouse-x', `${x}%`);
+    cardRef.current.style.setProperty('--mouse-y', `${y}%`);
   };
 
   return (
-    <a
+    <motion.a
+      variants={fadeUp}
       ref={cardRef}
       key={project.id}
-      href={project.demoLink || project.githubLink}
-      className="project-card reveal"
+      href={project.github}
+      className="project-card"
       target="_blank"
       rel="noopener noreferrer"
-      style={{ '--project-color': project.color }}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
     >
       <div className="project-header">
-        <span className="project-pill text-mono" style={{ color: project.color, borderColor: project.color }}>
-          {project.subtitle || project.title}
+        <span className="project-pill text-mono">
+          {project.label}
         </span>
-        <span className="project-card__icon text-display">{project.icon}</span>
+        <span className="project-type text-mono">{project.type}</span>
       </div>
       <h3 className="project-card__title text-display">{project.title}</h3>
-      <p className="project-card__desc text-body">{project.description}</p>
+      <p className="project-card__desc text-body">{project.headline}</p>
+      <ul className="project-card__bullets text-mono" style={{ paddingLeft: '1.2rem', marginTop: '1rem', color: 'var(--color-text-tertiary)', fontSize: '0.85rem' }}>
+        {project.bullets.map((b, i) => (
+          <li key={i} style={{ marginBottom: '0.25rem' }}>{b}</li>
+        ))}
+      </ul>
       <div className="project-stack text-mono">
-        {project.techStack.map((t) => (
+        {project.stack.map((t) => (
           <span key={t} className="project-stack__item">{t}</span>
         ))}
       </div>
-      <span className="project-link text-mono" style={{ color: project.color }}>
+      <span className="project-link text-mono">
         View Project <span>→</span>
       </span>
-    </a>
+    </motion.a>
   );
 }
 
 function Projects() {
-  const projectList = projects.filter(p => p.id !== 4);
-
   return (
-    <section className="projects" id="work">
+    <motion.section 
+      className="projects" 
+      id="work"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-80px' }}
+    >
       <div className="container">
-        <p className="section-label reveal">02 ── SELECTED WORK</p>
+        <span className="section-label" style={{ marginBottom: '1rem', display: 'block' }}>03 — PROJECTS</span>
 
-        <div className="project-grid reveal-stagger">
-          {projectList.map((project) => (
+        <div className="project-grid">
+          {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

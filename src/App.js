@@ -1,19 +1,34 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useCallback, Suspense, lazy } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
-import Projects from './components/Projects/Projects';
-import Research from './components/Research/Research';
-import About from './components/About/About';
-import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
-import ThreeCanvas from './components/ThreeCanvas/ThreeCanvas';
+
+import { Cursor } from './components/ui/Cursor';
+import Lenis from 'lenis';
 import './App.css';
 
-const SECTIONS = ['hero', 'work', 'research', 'about', 'contact'];
+const About = lazy(() => import('./components/About/About'));
+const Experience = lazy(() => import('./components/Experience/Experience'));
+const Projects = lazy(() => import('./components/Projects/Projects'));
+const Research = lazy(() => import('./components/Research/Research'));
+const Skills = lazy(() => import('./components/Skills/Skills'));
+const Awards = lazy(() => import('./components/Awards/Awards'));
+const Contact = lazy(() => import('./components/Contact/Contact'));
+
+const SECTIONS = ['about', 'experience', 'projects', 'research', 'skills', 'awards', 'contact'];
 
 function App() {
   const [activeSection, setActiveSection] = useState(0);
   const sectionRefs = useRef([]);
+
+  /* ── Smooth scroll initialization ─────────────────── */
+  useEffect(() => {
+    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    let rafId;
+    function raf(time) { lenis.raf(time); rafId = requestAnimationFrame(raf); }
+    rafId = requestAnimationFrame(raf);
+    return () => { cancelAnimationFrame(rafId); lenis.destroy(); };
+  }, []);
 
   /* ── Scroll reveal (once-only) ────────────────────── */
   useEffect(() => {
@@ -62,9 +77,8 @@ function App() {
 
   return (
     <div className="app">
-      {/* ── Three.js WebGL Canvas — fixed, behind everything ─── */}
-      {/* z-index: 0 — all HTML content is z-index: 1+           */}
-      <ThreeCanvas />
+      <Cursor />
+      {/* Simple aesthetic background via CSS instead of Three.js */}
 
       {/* Vertical section rail */}
       <nav className="section-rail" aria-label="Section navigation">
@@ -82,11 +96,16 @@ function App() {
 
       <div className="main-content">
         <Navbar onNavigate={scrollToSection} />
-        <div ref={setSectionRef(0)}><Hero /></div>
-        <div ref={setSectionRef(1)}><Projects /></div>
-        <div ref={setSectionRef(2)}><Research /></div>
-        <div ref={setSectionRef(3)}><About /></div>
-        <div ref={setSectionRef(4)}><Contact /></div>
+        <Hero />
+        <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
+          <div ref={setSectionRef(0)}><About /></div>
+          <div ref={setSectionRef(1)}><Experience /></div>
+          <div ref={setSectionRef(2)}><Projects /></div>
+          <div ref={setSectionRef(3)}><Research /></div>
+          <div ref={setSectionRef(4)}><Skills /></div>
+          <div ref={setSectionRef(5)}><Awards /></div>
+          <div ref={setSectionRef(6)}><Contact /></div>
+        </Suspense>
         <Footer />
       </div>
     </div>

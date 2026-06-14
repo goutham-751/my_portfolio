@@ -1,49 +1,61 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { fadeUp, maskReveal, staggerContainer, EASING } from '../../lib/animations';
+import { useMagneticButton } from '../../hooks/useMagneticButton';
 import './Hero.css';
 
 function Hero() {
+    const { ref: ctaRef, pos, handleMouseMove, handleMouseLeave } = useMagneticButton(0.3);
+
     return (
-        <section className="hero" id="hero">
-            <div className="container hero__inner hero-stagger">
+        <motion.section 
+            className="hero" 
+            id="hero"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+        >
+            <div className="container">
+                <div className="hero__inner">
+                    {/* Available for Internships badge */}
+                    <motion.div variants={fadeUp} custom={0} className="hero__internship-badge">
+                        <span className="hero__internship-pulse" />
+                        <span className="hero__internship-text text-mono">
+                            Open to Work · 2026
+                        </span>
+                    </motion.div>
 
-                {/* Micro label */}
-                <p className="hero__label hero-animate text-mono">
-                    PROFILE_LOADED · VIT CHENNAI · INDIA · 2025
-                </p>
+                    {/* Headline */}
+                    <h1 className="hero__headline">
+                        <motion.span variants={maskReveal} className="hero__line1 text-display" style={{ display: 'inline-block', overflow: 'hidden' }}>Goutham Kumar</motion.span>
+                        
+                    </h1>
 
-                {/* Headline */}
-                <h1 className="hero__headline hero-animate">
-                    <span className="hero__line1 text-display">Goutham Kumar</span>
-                    <span className="hero__line2 text-display">builds systems</span>
-                    <span className="hero__line3 text-display">that think.</span>
-                </h1>
+                    {/* Professional Summary */}
+                    <motion.div variants={fadeUp} className="hero__summary" style={{ maxWidth: '650px', marginBottom: '3rem' }}>
+                        <p className="text-body" style={{ fontSize: '1.15rem', color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
+                            I'm an AI/ML engineer and full-stack developer currently doing my final year  btech in VIT Chennai. I specialize in building end-to-end intelligent systems — from architecting scalable RAG pipelines and predictive maintenance models to shipping robust, production-ready applications. I am passionate about creating software that bridges complex data with intuitive user experiences.
+                        </p>
+                    </motion.div>
 
-                {/* Bio */}
-                <p className="hero__bio hero-animate text-body">
-                    Full-stack engineer and ML practitioner pursuing B.Tech in Computer
-                    Science &amp; Data Science at VIT Chennai (CGPA: 8.83). I build products
-                    that use data and AI to solve problems with real stakes — from atomic
-                    research labs to hackathon stages.
-                </p>
-
-                {/* Tech strip */}
-                <div className="hero__strip hero-animate text-mono">
-                    {['Python', 'React', 'FastAPI', 'TensorFlow', 'AWS', 'Docker'].map((t, i) => (
-                        <React.Fragment key={t}>
-                            {i > 0 && <span className="hero__strip-sep" />}
-                            <span className="hero__strip-item">{t}</span>
-                        </React.Fragment>
-                    ))}
-                </div>
-
-                {/* CTAs */}
-                <div className="hero__ctas hero-animate">
-                    <a href="#work" className="hero__cta-primary text-mono">
-                        View Work <span className="hero__arrow">→</span>
-                    </a>
-                    <a href="/resume.pdf" download="Goutham_Kumar_Resume.pdf" className="hero__cta-secondary text-mono" target="_blank" rel="noopener noreferrer">
-                        Download Resume ↓
-                    </a>
+                    {/* CTAs */}
+                    <motion.div variants={fadeUp} className="hero__ctas">
+                        <motion.a 
+                            href="#work" 
+                            className="hero__cta-primary text-mono"
+                            ref={ctaRef}
+                            onMouseMove={handleMouseMove}
+                            onMouseLeave={handleMouseLeave}
+                            animate={{ x: pos.x, y: pos.y }}
+                            transition={EASING.spring}
+                        >
+                            View Projects <span className="hero__arrow">→</span>
+                        </motion.a>
+                        <a href="/resume.pdf" download="Goutham_Kumar_Resume.pdf" className="hero__cta-secondary text-mono" target="_blank" rel="noopener noreferrer">
+                            Download Resume ↓
+                        </a>
+                    </motion.div>
                 </div>
             </div>
 
@@ -54,14 +66,10 @@ function Hero() {
                     <defs>
                         <path id="circlePath" d="M 100,100 m -75,0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" />
                     </defs>
-                    <text className="hero__orbit-text">
-                        <textPath href="#circlePath">
-                            GOUTHAM · KUMAR · CS · DATA · AI · GOUTHAM · KUMAR · CS · DATA · AI ·&nbsp;
-                        </textPath>
-                    </text>
+                    
                 </svg>
             </div>
-        </section>
+        </motion.section>
     );
 }
 

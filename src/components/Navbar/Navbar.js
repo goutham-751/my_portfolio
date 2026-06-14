@@ -12,10 +12,10 @@ function Navbar({ onNavigate }) {
   }, []);
 
   const links = [
-    { label: 'Work', idx: 1 },
-    { label: 'Research', idx: 2 },
-    { label: 'About', idx: 3 },
-    { label: 'Contact', idx: 4 },
+    { label: 'Projects', idx: 2 },
+    { label: 'Experience', idx: 1 },
+    { label: 'Research', idx: 3 },
+    { label: 'About', idx: 0 },
   ];
 
   const handleNav = (idx) => {
@@ -39,6 +39,14 @@ function Navbar({ onNavigate }) {
                 </button>
               </React.Fragment>
             ))}
+            <span className="navbar__sep">·</span>
+            <div className="status-badge">
+              <span className="status-badge__dot-container">
+                <span className="status-badge__ping" />
+                <span className="status-badge__dot" />
+              </span>
+              <span className="status-badge__text">Open to Work</span>
+            </div>
             <span className="navbar__sep">·</span>
             <a href="/resume.pdf" download="Goutham_Kumar_Resume.pdf" className="navbar__link" style={{ textDecoration: 'none', color: 'var(--accent-warm)' }}>
               Resume ↓
@@ -73,6 +81,13 @@ function Navbar({ onNavigate }) {
               {link.label}
             </button>
           ))}
+          <div className="status-badge">
+            <span className="status-badge__dot-container">
+              <span className="status-badge__ping" />
+              <span className="status-badge__dot" />
+            </span>
+            <span className="status-badge__text">Open to Work</span>
+          </div>
           <a
             href="/resume.pdf"
             download="Goutham_Kumar_Resume.pdf"

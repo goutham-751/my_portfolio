@@ -1,38 +1,23 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { fadeUp, staggerContainer } from '../../lib/animations';
 import './About.css';
-
-const skills = [
-  { domain: 'Languages', stack: 'Python · JavaScript · Java · C/C++ · SQL · R' },
-  { domain: 'Frameworks', stack: 'React · Streamlit · FastAPI' },
-  { domain: 'Dev Tools', stack: 'AWS · GitHub · Docker · VS Code · PyCharm · HuggingFace' },
-  { domain: 'Libraries', stack: 'Pandas · NumPy · Matplotlib · Seaborn · Bootstrap · TensorFlow · LangChain · ChromaDB' },
-  { domain: 'Security', stack: 'CTF · Community · Fundamentals' },
-];
-
-const education = [
-  {
-    period: '2023 – 2027',
-    institution: 'Vellore Institute of Technology, Chennai',
-    degree: 'B.Tech Computer Science Engineering (Data Science)',
-    score: 'CGPA: 8.83 / 10',
-  },
-  {
-    period: '2022 – 2023',
-    institution: 'Adhyapana School, Madurai',
-    degree: '12th Class',
-    score: 'Percentage: 94.2%',
-  },
-];
 
 function About() {
   return (
-    <section className="about" id="about">
+    <motion.section 
+      className="about" 
+      id="about"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-80px' }}
+    >
       <div className="container">
-        <p className="section-label reveal">04 ── ABOUT</p>
+        <span className="section-label" style={{ marginBottom: '1rem', display: 'block' }}>01 — ABOUT</span>
 
         <div className="about__split">
-          {/* Bio */}
-          <div className="about__bio reveal">
+          <motion.div variants={fadeUp} className="about__bio">
             <p className="text-body about__bio-text">
               I'm Goutham — a CS and Data Science student at VIT Chennai,
               building at the edge of systems, ML, and product. I've analysed
@@ -40,49 +25,39 @@ function About() {
               people actually use, and won bounties for blockchain systems that
               solve real economic problems for gig workers.
             </p>
-            <p className="text-body about__bio-text">
+            <p className="text-body about__bio-text" style={{ marginTop: '1.5rem', marginBottom: '3rem' }}>
               I care about work that has stakes. Software that runs something
               important. Systems that hold.
             </p>
 
             {/* Education */}
             <div className="about__education">
-              <h3 className="about__edu-title text-mono">EDUCATION</h3>
-              {education.map((edu) => (
-                <div key={edu.institution} className="about__edu-row">
-                  <div className="about__edu-header">
-                    <span className="about__edu-degree text-mono">{edu.degree}</span>
-                    <span className="about__edu-period text-mono">{edu.period}</span>
-                  </div>
-                  <span className="about__edu-institution text-mono">{edu.institution}</span>
-                  <span className="about__edu-score text-mono">{edu.score}</span>
+              <h3 className="about__edu-title text-mono" style={{ fontSize: '13px', color: 'var(--color-text-secondary)', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                Education
+              </h3>
+              
+              <div className="about__edu-row" style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '1.5rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span className="text-mono" style={{ fontSize: '16px', color: 'var(--color-text-primary)' }}>B.Tech Computer Science (Data Science)</span>
+                  <span className="text-mono" style={{ fontSize: '13px', color: 'var(--color-text-tertiary)' }}>2023 – 2027</span>
                 </div>
-              ))}
-            </div>
-          </div>
+                <span className="text-mono" style={{ fontSize: '14px', color: 'var(--color-accent)' }}>Vellore Institute of Technology, Chennai</span>
+                <span className="text-mono" style={{ fontSize: '14px', color: 'var(--color-text-secondary)', marginTop: '4px' }}>CGPA: 8.85 / 10</span>
+              </div>
 
-          {/* Skills table */}
-          <div className="about__skills reveal">
-            <table className="skills-table text-mono">
-              <thead>
-                <tr>
-                  <th className="skills-table__header">DOMAIN</th>
-                  <th className="skills-table__header">STACK</th>
-                </tr>
-              </thead>
-              <tbody>
-                {skills.map((row) => (
-                  <tr key={row.domain} className="skills-table__row">
-                    <td className="skills-table__domain">{row.domain}</td>
-                    <td className="skills-table__stack">{row.stack}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              <div className="about__edu-row" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span className="text-mono" style={{ fontSize: '16px', color: 'var(--color-text-primary)' }}>Higher Secondary (12th Grade)</span>
+                  <span className="text-mono" style={{ fontSize: '13px', color: 'var(--color-text-tertiary)' }}>2022 – 2023</span>
+                </div>
+                <span className="text-mono" style={{ fontSize: '14px', color: 'var(--color-accent)' }}>Adhyapana School, Madurai</span>
+                <span className="text-mono" style={{ fontSize: '14px', color: 'var(--color-text-secondary)', marginTop: '4px' }}>Percentage: 94.2%</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

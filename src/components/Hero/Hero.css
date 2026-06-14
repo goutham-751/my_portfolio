@@ -18,28 +18,9 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
-    /* Glass content card — keeps text readable above Three.js scene */
-    background: rgba(5, 5, 10, 0.62);
-    border: 1px solid rgba(77, 255, 196, 0.08);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 2px;
-    padding: var(--space-8) var(--space-8);
     max-width: 680px;
     position: relative;
     z-index: 2;
-}
-
-/* Teal top-left corner accent line */
-.hero__inner::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 0;
-    width: 60px;
-    height: 2px;
-    background: var(--accent-signal);
-    box-shadow: 0 0 12px rgba(77, 255, 196, 0.6);
 }
 
 /* Micro label */
@@ -47,6 +28,39 @@
     font-size: 11px;
     color: var(--text-secondary);
     letter-spacing: 0.12em;
+}
+
+/* Internship Badge */
+.hero__internship-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 9999px;
+    border: 1px solid var(--color-accent-dim);
+    background: var(--color-accent-dim);
+    margin-bottom: var(--space-3);
+    align-self: flex-start;
+}
+
+.hero__internship-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.hero__internship-text {
+    font-size: 10px;
+    color: var(--color-accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
 /* Headline */
@@ -57,14 +71,15 @@
 }
 
 .hero__line1 {
-    font-size: clamp(48px, 7vw, 80px);
+    font-size: var(--text-hero);
     color: var(--text-primary);
+    line-height: 1.1;
 }
 
 .hero__line2 {
-    font-size: clamp(40px, 6vw, 64px);
+    font-size: var(--text-4xl);
     color: var(--text-secondary);
-    font-weight: 700;
+    line-height: 1.2;
 }
 
 .hero__line3 {
@@ -74,12 +89,9 @@
     text-shadow: 0 0 32px rgba(77, 255, 196, 0.35);
 }
 
-/* Bio */
-.hero__bio {
-    font-size: 17px;
-    color: var(--text-secondary);
-    max-width: 560px;
-    line-height: 1.75;
+/* Summary */
+.hero__summary {
+    margin-top: var(--space-4);
 }
 
 /* Tech strip */
@@ -221,7 +233,7 @@
     }
 
     .hero__inner {
-        padding: var(--space-6) var(--space-5);
+        padding: 0;
     }
 }
 
@@ -233,9 +245,8 @@
 
     .hero__inner {
         max-width: 100%;
-        /* Slightly more opaque on mobile — no backdrop-filter guarantee */
-        background: rgba(5, 5, 10, 0.88);
-        padding: var(--space-5) var(--space-3);
+        padding: 0;
+        background: transparent;
     }
 
     .hero__line1 {
