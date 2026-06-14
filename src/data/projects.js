@@ -13,7 +13,7 @@ export const projects = [
       'Responsive frontend with Framer Motion-driven live feedback visualization',
       'RESTful APIs for resume scoring, interview orchestration, and state management',
     ],
-    github: 'https://github.com/goutham-751/CAMPUSHIRE.AI',
+    github: 'https://campushire-ai.vercel.app/',
   },
   {
     id: 'rag-api',
@@ -28,7 +28,7 @@ export const projects = [
       'Hybrid retrieval: Dense Embeddings (SentenceTransformers) + Sparse BM25 + Reciprocal Rank Fusion',
       'Deployed via Docker on HuggingFace Spaces with bcrypt auth, rate limiting, TTL caching',
     ],
-    github: 'https://github.com/goutham-751/Multi-tenant-RAG-API',
+    github: 'https://damn0898-multi-tenant-rag-api.hf.space/docs',
   },
   {
     id: 'pricepilot',
