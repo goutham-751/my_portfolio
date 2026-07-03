@@ -1,64 +1,74 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { fadeUp, staggerContainer } from '../../lib/animations';
-import './About.css';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { about } from '../../data/projects';
 
-function About() {
+const AboutMe = () => {
+  const containerRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end']
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 80, damping: 20, restDelta: 0.001 });
+
+  // Name is always visible, but the subtitles and summary animate in
+  const titleOpacity = useTransform(smoothProgress, [0.05, 0.3], [0, 1]);
+  const frag1X = useTransform(smoothProgress, [0.05, 0.3], [-150, 0]);
+  const frag2X = useTransform(smoothProgress, [0.05, 0.3], [150, 0]);
+  
+  const dividerWidth = useTransform(smoothProgress, [0.2, 0.45], ['0%', '100%']);
+  
+  const summaryOpacity = useTransform(smoothProgress, [0.3, 0.55], [0, 1]);
+  const summaryY = useTransform(smoothProgress, [0.3, 0.55], [30, 0]);
+
   return (
-    <motion.section 
-      className="about" 
-      id="about"
-      variants={staggerContainer}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
-    >
-      <div className="container">
-        <span className="section-label" style={{ marginBottom: '1rem', display: 'block' }}>01 — ABOUT</span>
+    <section id="about" ref={containerRef} style={{ height: '120vh', position: 'relative', backgroundColor: 'var(--bg-primary)' }}>
+      <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
 
-        <div className="about__split">
-          <motion.div variants={fadeUp} className="about__bio">
-            <p className="text-body about__bio-text">
-              I'm Goutham — a CS and Data Science student at VIT Chennai,
-              building at the edge of systems, ML, and product. I've analysed
-              dose data at a nuclear research facility, shipped AI platforms
-              people actually use, and won bounties for blockchain systems that
-              solve real economic problems for gig workers.
-            </p>
-            <p className="text-body about__bio-text" style={{ marginTop: '1.5rem', marginBottom: '3rem' }}>
-              I care about work that has stakes. Software that runs something
-              important. Systems that hold.
-            </p>
-
-            {/* Education */}
-            <div className="about__education">
-              <h3 className="about__edu-title text-mono" style={{ fontSize: '13px', color: 'var(--color-text-secondary)', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                Education
-              </h3>
-              
-              <div className="about__edu-row" style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '1.5rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span className="text-mono" style={{ fontSize: '16px', color: 'var(--color-text-primary)' }}>B.Tech Computer Science (Data Science)</span>
-                  <span className="text-mono" style={{ fontSize: '13px', color: 'var(--color-text-tertiary)' }}>2023 – 2027</span>
-                </div>
-                <span className="text-mono" style={{ fontSize: '14px', color: 'var(--color-accent)' }}>Vellore Institute of Technology, Chennai</span>
-                <span className="text-mono" style={{ fontSize: '14px', color: 'var(--color-text-secondary)', marginTop: '4px' }}>CGPA: 8.85 / 10</span>
-              </div>
-
-              <div className="about__edu-row" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span className="text-mono" style={{ fontSize: '16px', color: 'var(--color-text-primary)' }}>Higher Secondary (12th Grade)</span>
-                  <span className="text-mono" style={{ fontSize: '13px', color: 'var(--color-text-tertiary)' }}>2022 – 2023</span>
-                </div>
-                <span className="text-mono" style={{ fontSize: '14px', color: 'var(--color-accent)' }}>Adhyapana School, Madurai</span>
-                <span className="text-mono" style={{ fontSize: '14px', color: 'var(--color-text-secondary)', marginTop: '4px' }}>Percentage: 94.2%</span>
-              </div>
+        <div className="grid-container" style={{ width: '100%' }}>
+          <div style={{ gridColumn: '2 / 12', position: 'relative', zIndex: 5 }}>
+            
+            {/* Name — always visible, no animation needed */}
+            <h1 
+              className="text-display text-massive" 
+              style={{ letterSpacing: '-0.05em', lineHeight: 0.85 }}
+            >
+              {about.name}
+            </h1>
+            
+            {/* Title fragments slide in */}
+            <div style={{ display: 'flex', gap: '2rem', marginTop: 'var(--space-sm)', flexWrap: 'wrap' }}>
+              <motion.span className="text-display text-xl" style={{ opacity: titleOpacity, x: frag1X }}>
+                FULL-STACK DEVELOPER.
+              </motion.span>
+              <motion.span className="text-display text-xl" style={{ color: 'var(--accent-color)', opacity: titleOpacity, x: frag2X }}>
+                AI ENGINEER.
+              </motion.span>
             </div>
-          </motion.div>
-        </div>
-      </div>
-    </motion.section>
-  );
-}
 
-export default About;
+            {/* Divider draws across */}
+            <div style={{ overflow: 'hidden', margin: 'var(--space-lg) 0' }}>
+              <motion.div style={{ width: dividerWidth, height: '1px', backgroundColor: 'var(--text-tertiary)' }} />
+            </div>
+            
+            {/* Summary fades up */}
+            <motion.p 
+              className="text-body text-lg" 
+              style={{ 
+                maxWidth: '800px', lineHeight: '1.6',
+                opacity: summaryOpacity, y: summaryY
+              }}
+            >
+              {about.summary}
+            </motion.p>
+            
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+export default AboutMe;

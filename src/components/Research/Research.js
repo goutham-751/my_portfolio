@@ -1,65 +1,67 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { fadeUp, staggerContainer } from '../../lib/animations';
-import './Research.css';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { research } from '../../data/projects';
 
-const research = {
-  title: 'CalibSSL: Reliability and Calibration of Self-Supervised Neural Networks on Tabular Data',
-  status: 'Under Review (Springer)',
-  abstract: 'Investigating why self-supervised models fail silently on tabular data — and fixing it through calibration-aware training objectives and entropy regularization.',
-  contributions: [
-    'Calibration-aware loss: cross-entropy + entropy-based confidence penalty to reduce overconfidence',
-    'ViME (Value Imputation & Mask Estimation) for SSL pretraining on unlabeled tabular data',
-    'Benchmarked against 6 baselines (RF, XGBoost, MLP variants) across 5 datasets',
-    '5 label-scarcity settings (5%–100%) — 600+ total experiments',
-    'Full statistical significance pipeline: paired t-tests, Wilcoxon, Friedman tests',
-    'Publication-ready visualizations and reproducible experimental pipeline',
-  ],
-  tags: ['Self-Supervised Learning', 'Calibration', 'Tabular Data', 'PyTorch', 'Statistical Testing'],
-  github: 'https://github.com/goutham-751/CalibSSL-Reliability-and-Calibration-of-Self-supervised-Neural-networks-on-Tabular-data-',
-};
+const Research = () => {
+  const containerRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'center center']
+  });
 
-function Research() {
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  
+  const scale = useTransform(smoothProgress, [0, 1], [0.8, 1]);
+  const opacity = useTransform(smoothProgress, [0, 1], [0, 1]);
+  const rotateX = useTransform(smoothProgress, [0, 1], [15, 0]);
+
   return (
-    <motion.section 
-      className="research" 
-      id="research"
-      variants={staggerContainer}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
-    >
-      <div className="container">
-        <span className="section-label" style={{ marginBottom: '1rem', display: 'block' }}>04 — RESEARCH</span>
+    <section id="research" ref={containerRef} className="chapter chapter-padding" style={{ perspective: '1000px' }}>
+      <div className="grid-container">
         
-        <motion.div variants={fadeUp} className="research__card">
-          <div className="research__header">
-            <span className="research__status text-mono">{research.status}</span>
-          </div>
+        {/* Header */}
+        <div style={{ gridColumn: '2 / 12', marginBottom: 'var(--space-xl)' }}>
+          <h2 className="text-mono">04 — Research</h2>
+          <h3 className="text-display text-huge" style={{ marginTop: 'var(--space-sm)' }}>ACADEMIC WORK</h3>
+        </div>
+
+        {/* Research Content */}
+        <div style={{ gridColumn: '2 / 12' }}>
           
-          <h3 className="research__title text-display">{research.title}</h3>
+          <motion.div 
+            style={{ 
+              border: '1px solid var(--text-primary)', 
+              padding: 'var(--space-xl)',
+              backgroundColor: 'var(--bg-secondary)',
+              scale, opacity, rotateX,
+              transformOrigin: 'bottom center',
+              boxShadow: '0 20px 40px rgba(0,0,0,0.05)'
+            }}
+          >
+            <div className="text-mono" style={{ color: 'var(--accent-color)', marginBottom: 'var(--space-md)' }}>
+              {research.period}
+            </div>
+            
+            <h4 className="text-display text-xl" style={{ marginBottom: 'var(--space-lg)', lineHeight: '1.2' }}>
+              {research.title}
+            </h4>
+            
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {research.bullets.map((bullet, i) => (
+                <li key={i} className="text-body text-lg" style={{ display: 'flex', gap: '1rem' }}>
+                  <span style={{ color: 'var(--text-tertiary)' }}>—</span>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
           
-          <p className="research__abstract text-mono">{research.abstract}</p>
-          
-          <ul className="research__contributions text-body">
-            {research.contributions.map((item, idx) => (
-              <li key={idx}>{item}</li>
-            ))}
-          </ul>
-          
-          <div className="research__tags text-mono">
-            {research.tags.map((tag) => (
-              <span key={tag} className="research__tag">{tag}</span>
-            ))}
-          </div>
-          
-          <a href={research.github} className="research__link text-mono" target="_blank" rel="noopener noreferrer">
-            View Code <span>→</span>
-          </a>
-        </motion.div>
+        </div>
+
       </div>
-    </motion.section>
+    </section>
   );
-}
+};
 
 export default Research;

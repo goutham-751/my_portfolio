@@ -1,115 +1,99 @@
 export const projects = [
   {
     id: 'campushire',
-    title: 'CampusHire.AI',
-    type: 'Full-Stack AI SaaS',
-    label: 'Featured',
-    stack: ['React.js', 'FastAPI', 'Llama-3', 'Framer Motion', 'Python'],
-    headline: 'An AI-native recruitment platform replacing manual resume screening and mock interviews.',
+    title: 'CAMPUSHIRE.AI',
+    type: 'AI-Powered Resume & Interview Platform',
+    stack: ['React', 'Python', 'NLP', 'RESTful APIs', 'Agentic AI'],
     bullets: [
-      'Real-time ATS resume analysis with scoring, parsing, and feedback',
-      'AI-powered interview simulation with live speech analytics integration',
-      'Multi-agent workflow (Llama-3) for automated candidate evaluation and ranking',
-      'Responsive frontend with Framer Motion-driven live feedback visualization',
-      'RESTful APIs for resume scoring, interview orchestration, and state management',
+      'Engineered a full-stack AI recruitment platform that automated candidate screening by architecting a high-performance FastAPI backend using PyPDF2 to map unstructured resumes into a standardized competency matrix.',
+      'Automated multi-dimensional candidate evaluation workflows by integrating the Groq LPU API and Llama-3.3-70b to orchestrate a simultaneous, 3-persona multi-agent interview simulation.',
+      'Achieved live behavioral profiling during mock interviews by designing a responsive React 18 workspace that utilized native Web Audio APIs and Framer Motion to calculate vocal pacing and filler-word density in real-time.',
+      'Ensured high availability and prevented API crashes during hallucinated AI responses by implementing strict JSON schema validation via Pydantic and custom telemetry middleware within the RESTful architecture.'
     ],
-    github: 'https://campushire-ai.vercel.app/',
+    link: 'https://campushire-ai.vercel.app/'
   },
   {
     id: 'rag-api',
-    title: 'Multi-Tenant RAG API',
-    type: 'Backend SaaS Infrastructure',
-    label: 'Production-Ready',
-    stack: ['FastAPI', 'ChromaDB', 'LangChain', 'Docker', 'HuggingFace', 'Groq', 'SentenceTransformers'],
-    headline: 'Production-grade, multi-tenant RAG API with enterprise security and hybrid vector search.',
+    title: 'Ragnium- A Multi-Tenant RAG API Platform',
+    type: 'SaaS Platform',
+    stack: ['React', 'Python', 'Docker', 'Langchain', 'ChromaDB', 'FastAPI', 'LLM'],
     bullets: [
-      'Natural language querying over private documents — zero hallucination via Groq LLM',
-      'Multi-tenant data isolation using persistent ChromaDB + SQLite/SQLModel',
-      'Hybrid retrieval: Dense Embeddings (SentenceTransformers) + Sparse BM25 + Reciprocal Rank Fusion',
-      'Deployed via Docker on HuggingFace Spaces with bcrypt auth, rate limiting, TTL caching',
+      'Built a multi-tenant RAG-as-a-Service API serving isolated AI environments per tenant, achieving <50ms cached query response times and 97%+ retrieval accuracy, by implementing hybrid vector search with ChromaDB, tenant-scoped collections, and an in-memory SHA-256 query cache.',
+      'Engineered a secure SaaS authentication system supporting JWT + API key dual-auth for N concurrent tenants with zero cross-tenant data leakage, by designing row-level tenant isolation with Supabase Auth (ES256), hashed API keys (SHA-256), and per-tenant rate limiting.',
+      'Deployed an enterprise-grade RAG backend to HuggingFace Spaces, achieving highly accurate context retrieval via hybrid search (Dense Embeddings + BM25 + RRF) while ensuring security and performance through bcrypt API auth, rate limiting, and in-memory TTL caching.'
     ],
-    github: 'https://damn0898-multi-tenant-rag-api.hf.space/docs',
+    link: 'https://multi-tenant-rag-api.vercel.app/'
   },
   {
     id: 'pricepilot',
-    title: 'PricePilot.AI',
-    type: 'Data Intelligence Platform',
-    label: 'Full-Stack',
-    stack: ['React', 'FastAPI', 'Supabase', 'PostgreSQL', 'Python'],
-    headline: 'Pricing intelligence engine synthesizing competitor signals and demand forecasts into revenue-optimizing decisions.',
+    title: 'PRICEPILOT.AI',
+    type: 'Pricing Intelligence Platform',
+    stack: ['React', 'Python', 'FastAPI', 'Supabase'],
     bullets: [
-      'Synthesizes competitor pricing, market trends, and demand signals in real time',
-      'Price elasticity analysis and accurate demand prediction pipeline',
-      'Supabase (PostgreSQL) for large-scale historical pricing data at query speed',
-      'Executive-facing React dashboard with live analytics and recommendation cards',
+      'Architected PricePilot AI: Built a full-stack pricing intelligence platform (React, FastAPI) that synthesizes competitor pricing, market trends, and demand signals to generate revenue-optimizing recommendations.',
+      'Engineered Backend Pipelines: Developed high-throughput FastAPI services responsible for scalable data ingestion, demand forecasting, and executing complex pricing decision logic.',
+      'Constructed Predictive Analytics: Designed a comprehensive historical analytics pipeline to perform price elasticity analysis and accurate demand prediction.',
+      'Managed Cloud Database Architecture: Integrated Supabase (PostgreSQL) to securely store and query large-scale historical pricing data, seamlessly serving an executive-facing React dashboard.'
     ],
-    github: 'https://github.com/goutham-751/PricePilot-AI',
-  },
-  {
-    id: 'predictive-maintenance',
-    title: 'Predictive Maintenance System',
-    type: 'Industrial ML System',
-    label: 'ML Engineering',
-    stack: ['Python', 'FastAPI', 'Streamlit', 'Scikit-learn'],
-    headline: 'End-to-end ML system for forecasting industrial machine failure and estimating remaining useful life.',
-    bullets: [
-      'Classifies failure probability + regresses Remaining Useful Life (RUL) from raw sensor streams',
-      'Class-imbalance techniques (SMOTE/weighted loss) to enhance accuracy on skewed datasets',
-      'FastAPI backend serving trained models at production inference speed',
-      'Real-time + batch prediction visualized in interactive Streamlit dashboard',
-    ],
-    github: 'https://github.com/goutham-751/Predictive-Maintenance-of-Industrial-Machines-Using-Sensor-Based-Failure-Prediction',
+    link: 'https://github.com/goutham-751/PricePilot-AI'
   },
 ];
-
-export const skills = {
-  frameworks: ["Express.js", "LangChain", "React", "Streamlit", "FastAPI", "Pytorch", "Tensorflow", "Node.js"],
-  libraries: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Bootstrap", "TensorFlow", "Scikit-learn", "spaCy"],
-  languages: ["Python", "JavaScript", "Java", "C/C++", "R", "MATLAB", "SQL", "RESTful APIs"],
-  tools: ["AWS", "GitHub", "Git", "Docker"],
-  databases: ["Supabase", "MySQL", "PostgreSQL"],
-  analytics: ["Tableau", "MS-Excel"]
-};
 
 export const experience = [
   {
-    id: 1,
-    role: 'Summer Research Intern',
-    org: 'IGCAR — Indira Gandhi Centre for Atomic Research',
-    division: 'Health & Industrial Safety Division, Department of Atomic Energy',
-    period: 'Jun 2025 – Jul 2025',
-    location: 'Kalpakkam, Chennai',
+    id: 'itechfoundry',
+    role: 'SDE Intern',
+    company: 'ItechFoundry Private Limited',
+    period: '06/2026 – Present',
+    location: 'Remote',
     bullets: [
-      'Radiological data analysis for dose mapping using statistical modeling',
-      'Data preprocessing, spatial analysis, and anomaly detection on monitoring data',
-      'Descriptive statistics and trend analysis to evaluate radiation exposure patterns',
-      'Contributed to safety assessment models for industrial and healthcare environments',
+      'Architected a scalable full-stack educational platform using React and FastAPI, integrating asynchronous PostgreSQL and Google OAuth 2.0 to deliver secure, role-based access control and lightning-fast data processing for administrative users.',
+      'Engineered a dynamic 6-tier curriculum hierarchy and bulk CSV/XLSX ingestion pipeline, utilizing dry-run validation algorithms to eliminate database duplication and streamline the onboarding of large-scale educational datasets.',
+      'Designed an extensible Multi-Provider AI architecture utilizing the Factory Design Pattern to automate the generation of curriculum-aligned content by seamlessly hot-swapping between OpenAI, Anthropic, and Groq LLMs.',
+      'Implemented robust PostgreSQL artifact persistence and custom API analytics engines to completely bypass Docker ephemeral storage failures.'
     ],
-    tags: ['Python', 'Statistical Modeling', 'Anomaly Detection', 'Spatial Analysis'],
   },
   {
-    id: 2,
+    id: 'igcar',
+    role: 'Summer Research Intern',
+    company: 'IGCAR (Indira Gandhi Centre for Atomic Research)',
+    period: '06/2025 – 07/2025',
+    location: 'Kalpakkam, Chennai',
+    bullets: [
+      'Completed internship at Indira Gandhi Centre for Atomic Research (IGCAR), Department of Atomic Energy in the Health & Industrial Safety Division.',
+      'Conducted radiological data analysis for dose mapping using statistical modeling.',
+      'Performed data preprocessing, spatial analysis, and anomaly detection on monitoring data.',
+      'Applied descriptive statistics & trend analysis to evaluate radiation exposure patterns.',
+      'Contributed to safety assessment models for industrial and healthcare environments.'
+    ],
+  },
+  {
+    id: 'vitc',
     role: 'Treasurer',
-    org: 'CyberSecurity Student Community, VITC',
-    period: 'Jun 2025 – Present',
+    company: 'CyberSecurity Student Community, VITC',
+    period: '06/2025 – 06/2026',
     location: 'VIT Chennai',
     bullets: [
-      'Manage financial budgeting and event expenses across community operations',
-      'Run hands-on CTF workshops for a 200+ member community',
-      'Coordinate events and mentor junior contributors in cybersecurity fundamentals',
+      'Handled event expenses and oversee the financial budgeting for the event.',
+      'Run hands-on workshops/CTFs; oversee content for a 200+ member community.',
+      'Coordinate events and mentor junior contributors in cybersecurity fundamentals.'
     ],
-    tags: ['Leadership', 'CTF', 'Community', 'Cybersecurity'],
   },
 ];
 
-export const awards = [
-  {
-    id: 1,
-    title: '₹50,000 Bounty — DEFY 26 University Hackathon',
-    date: 'January 2026',
-    project: 'ParaCipher',
-    description: 'A decentralized blockchain application automating insurance payments for gig workers via smart contracts on the Shardeum network.',
-    awardedBy: 'ThinkRoot Ventures × Shardeum',
-    tags: ['Blockchain', 'Smart Contracts', 'DeFi', 'Shardeum'],
-  },
-];
+export const research = {
+  title: 'CalibSSL: Reliability and Calibration of Self-Supervised Neural Networks on Tabular Data (Under review)',
+  period: '01/2026 – Present',
+  bullets: [
+    'Designed a calibration-aware training objective combining cross-entropy with entropy-based confidence penalty to reduce prediction overconfidence.',
+    'Implemented ViME (Value Imputation and Mask Estimation) for self-supervised pretraining on unlabeled tabular data.',
+    'Benchmarked against 6 baselines (RF, XGBoost, MLP variants) across 5 datasets and 5 label-scarcity settings (5%–100%).',
+    'Built a complete experimental pipeline with statistical significance testing (paired t-tests, Wilcoxon, Friedman) and publication-ready visualizations.'
+  ]
+};
+
+export const about = {
+  name: 'Goutham Kumar',
+  title: 'Full-Stack Developer & AI Engineer',
+  summary: 'Computer science engineering student specializing in AI and machine learning with strong foundations in data structures & algorithms, statistics, and software development. Proficient in Java, Python, machine learning, agentic AI, and full-stack development. Experienced in building AI-powered applications, predictive models, REST APIs, and scalable web solutions through internships and projects.'
+};

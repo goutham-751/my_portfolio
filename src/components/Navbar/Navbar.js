@@ -1,106 +1,66 @@
 import React, { useState, useEffect } from 'react';
-import './Navbar.css';
 
-function Navbar({ onNavigate }) {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+const Navbar = () => {
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const checkBackground = () => {
+      // Get all dark sections
+      const darkSections = document.querySelectorAll('#projects, #contact');
+      const navbarY = 40; // Approximate vertical center of navbar
+      
+      let onDark = false;
+      darkSections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= navbarY && rect.bottom >= navbarY) {
+          onDark = true;
+        }
+      });
+      setIsDark(onDark);
+    };
+
+    window.addEventListener('scroll', checkBackground, { passive: true });
+    checkBackground(); // Initial check
+    return () => window.removeEventListener('scroll', checkBackground);
   }, []);
 
-  const links = [
-    { label: 'Projects', idx: 2 },
-    { label: 'Experience', idx: 1 },
-    { label: 'Research', idx: 3 },
-    { label: 'About', idx: 0 },
-  ];
-
-  const handleNav = (idx) => {
-    onNavigate(idx);
-    setMenuOpen(false);
+  const scrollTo = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
-  return (
-    <>
-      <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
-        <div className="navbar__inner">
-          <button className="navbar__monogram" onClick={() => onNavigate(0)} aria-label="Go to top">
-            GK
-          </button>
-          <nav className="navbar__links" aria-label="Main navigation">
-            {links.map((link, i) => (
-              <React.Fragment key={link.label}>
-                {i > 0 && <span className="navbar__sep">·</span>}
-                <button className="navbar__link" onClick={() => handleNav(link.idx)}>
-                  {link.label}
-                </button>
-              </React.Fragment>
-            ))}
-            <span className="navbar__sep">·</span>
-            <div className="status-badge">
-              <span className="status-badge__dot-container">
-                <span className="status-badge__ping" />
-                <span className="status-badge__dot" />
-              </span>
-              <span className="status-badge__text">Open to Work</span>
-            </div>
-            <span className="navbar__sep">·</span>
-            <a href="/resume.pdf" download="Goutham_Kumar_Resume.pdf" className="navbar__link" style={{ textDecoration: 'none', color: 'var(--accent-warm)' }}>
-              Resume ↓
-            </a>
-          </nav>
-          <button
-            className="navbar__menu-toggle"
-            onClick={() => setMenuOpen(true)}
-            aria-label="Open menu"
-          >
-            Menu
-          </button>
-        </div>
-      </header>
+  const textColor = isDark ? '#F4F4F0' : 'var(--text-primary)';
 
-      {/* Mobile overlay */}
-      <div className={`navbar__overlay${menuOpen ? ' open' : ''}`}>
-        <button
-          className="navbar__overlay-close"
-          onClick={() => setMenuOpen(false)}
-          aria-label="Close menu"
-        >
-          Close
-        </button>
-        <nav className="navbar__overlay-links">
-          {links.map((link) => (
-            <button
-              key={link.label}
-              className="navbar__overlay-link"
-              onClick={() => handleNav(link.idx)}
-            >
-              {link.label}
-            </button>
-          ))}
-          <div className="status-badge">
-            <span className="status-badge__dot-container">
-              <span className="status-badge__ping" />
-              <span className="status-badge__dot" />
-            </span>
-            <span className="status-badge__text">Open to Work</span>
-          </div>
-          <a
-            href="/resume.pdf"
-            download="Goutham_Kumar_Resume.pdf"
-            className="navbar__overlay-link"
-            style={{ textDecoration: 'none', color: 'var(--accent-warm)' }}
-            onClick={() => setMenuOpen(false)}
-          >
-            Resume ↓
-          </a>
-        </nav>
+  return (
+    <nav style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      padding: 'var(--space-md) var(--space-lg)',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      zIndex: 100,
+      color: textColor,
+      transition: 'color 0.3s ease',
+      backdropFilter: 'blur(8px)',
+      backgroundColor: isDark ? 'rgba(17,17,17,0.5)' : 'rgba(244,244,240,0.5)'
+    }}>
+      <div className="text-display" style={{ fontSize: '1.5rem', cursor: 'pointer' }} onClick={() => scrollTo('about')}>
+        GK.
       </div>
-    </>
+      <div style={{ display: 'flex', gap: '2rem' }} className="text-mono">
+        <span style={{ cursor: 'pointer' }} onClick={() => scrollTo('about')}>About Me</span>
+        <span style={{ cursor: 'pointer' }} onClick={() => scrollTo('projects')}>Projects</span>
+        <span style={{ cursor: 'pointer' }} onClick={() => scrollTo('experience')}>Experience</span>
+        <span style={{ cursor: 'pointer' }} onClick={() => scrollTo('research')}>Research Work</span>
+        <span style={{ cursor: 'pointer', color: 'var(--accent-color)' }} onClick={() => scrollTo('contact')}>Contact</span>
+      </div>
+    </nav>
   );
-}
+};
 
 export default Navbar;
