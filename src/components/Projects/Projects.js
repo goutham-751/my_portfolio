@@ -33,7 +33,7 @@ const ProjectCard = ({ project, index, smoothProgress, totalProjects }) => {
         {/* Left: Meta */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
           <div className="text-mono" style={{ color: 'var(--accent-color)', fontSize: '0.8rem' }}>
-            {String(index + 1).padStart(2, '0')} // {project.type}
+            {String(index + 1).padStart(2, '0')} {"//"} {project.type}
           </div>
           <h4 className="text-display text-xl" style={{ lineHeight: 1.1 }}>
             {project.title}
