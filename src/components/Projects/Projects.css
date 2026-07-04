@@ -27,20 +27,23 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    var(--color-accent-glow), transparent 70%
-  );
+  background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      var(--color-accent-glow), transparent 70%);
   opacity: 0;
   transition: opacity 0.3s;
   pointer-events: none;
   z-index: 0;
 }
 
-.project-card:hover::before { opacity: 1; }
-.project-card:hover { border-color: var(--color-border-hover); }
+.project-card:hover::before {
+  opacity: 1;
+}
 
-.project-card > * {
+.project-card:hover {
+  border-color: var(--color-border-hover);
+}
+
+.project-card>* {
   position: relative;
   z-index: 1;
 }
@@ -124,6 +127,7 @@
   .project-grid {
     grid-template-columns: 1fr;
   }
+
   .project-card {
     padding: var(--space-5);
   }

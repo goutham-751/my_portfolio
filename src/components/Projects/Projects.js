@@ -8,7 +8,7 @@ const ProjectCard = ({ project, index, smoothProgress, totalProjects }) => {
   const segmentSize = 1 / totalProjects;
   const start = index * segmentSize;
   const mid = start + segmentSize * 0.3;
-  
+
   // Card slides up from below and fades in
   const cardY = useTransform(smoothProgress, [start, mid], [120, 0]);
   const cardOpacity = useTransform(smoothProgress, [start, mid], [0, 1]);
@@ -21,13 +21,13 @@ const ProjectCard = ({ project, index, smoothProgress, totalProjects }) => {
         marginBottom: 'var(--space-xl)',
       }}
     >
-      <div style={{ 
-        backgroundColor: '#1A1A1A', 
+      <div style={{
+        backgroundColor: '#1A1A1A',
         border: '1px solid rgba(255,255,255,0.08)',
-        borderRadius: '16px', 
+        borderRadius: '16px',
         padding: 'var(--space-lg)',
-        display: 'grid', 
-        gridTemplateColumns: '1fr 1.5fr', 
+        display: 'grid',
+        gridTemplateColumns: '1fr 1.5fr',
         gap: 'var(--space-lg)',
       }}>
         {/* Left: Meta */}
@@ -40,12 +40,12 @@ const ProjectCard = ({ project, index, smoothProgress, totalProjects }) => {
           </h4>
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: 'var(--space-sm)' }}>
             {project.stack.map(tech => (
-              <span key={tech} className="text-mono" style={{ 
-                color: 'var(--text-inverse-sec)', 
-                border: '1px solid rgba(255,255,255,0.2)', 
-                padding: '0.25rem 0.75rem', 
-                borderRadius: '4px', 
-                fontSize: '0.7rem' 
+              <span key={tech} className="text-mono" style={{
+                color: 'var(--text-inverse-sec)',
+                border: '1px solid rgba(255,255,255,0.2)',
+                padding: '0.25rem 0.75rem',
+                borderRadius: '4px',
+                fontSize: '0.7rem'
               }}>
                 {tech}
               </span>
@@ -53,16 +53,16 @@ const ProjectCard = ({ project, index, smoothProgress, totalProjects }) => {
           </div>
 
           {project.link && (
-            <a 
-              href={project.link} 
-              target="_blank" 
+            <a
+              href={project.link}
+              target="_blank"
               rel="noopener noreferrer"
-              className="text-mono" 
-              style={{ 
+              className="text-mono"
+              style={{
                 display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                color: '#111', backgroundColor: '#F4F4F0', 
+                color: '#111', backgroundColor: '#F4F4F0',
                 padding: '0.6rem 1.2rem',
-                textDecoration: 'none', textTransform: 'none', 
+                textDecoration: 'none', textTransform: 'none',
                 transition: 'all 0.2s ease', cursor: 'pointer',
                 marginTop: 'var(--space-sm)',
                 alignSelf: 'flex-start',
@@ -102,12 +102,12 @@ const Projects = () => {
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 80, damping: 20, restDelta: 0.001 });
 
   return (
-    <section 
-      id="projects" 
-      ref={containerRef} 
-      style={{ 
-        position: 'relative', 
-        backgroundColor: 'var(--bg-dark)', 
+    <section
+      id="projects"
+      ref={containerRef}
+      style={{
+        position: 'relative',
+        backgroundColor: 'var(--bg-dark)',
         color: 'var(--text-inverse)',
         padding: 'var(--space-xl) 0 var(--space-2xl) 0'
       }}

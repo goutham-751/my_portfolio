@@ -7,18 +7,23 @@
 
 :root {
   /* Color Palette (The 3-Color Rule) */
-  --bg-primary: #F4F4F0;       /* Alabaster / Bone */
-  --bg-secondary: #EBEBE6;     /* Slightly darker for contrast zones */
-  --bg-dark: #111111;          /* For inverted sections */
-  
-  --text-primary: #111111;     /* Deep Charcoal (not pure black) */
+  --bg-primary: #F4F4F0;
+  /* Alabaster / Bone */
+  --bg-secondary: #EBEBE6;
+  /* Slightly darker for contrast zones */
+  --bg-dark: #111111;
+  /* For inverted sections */
+
+  --text-primary: #111111;
+  /* Deep Charcoal (not pure black) */
   --text-secondary: rgba(17, 17, 17, 0.6);
   --text-tertiary: rgba(17, 17, 17, 0.4);
-  
+
   --text-inverse: #F4F4F0;
   --text-inverse-sec: rgba(244, 244, 240, 0.6);
 
-  --accent-color: #D32F2F;     /* Subtle Vermilion/Red for microscopic accents */
+  --accent-color: #D32F2F;
+  /* Subtle Vermilion/Red for microscopic accents */
 
   /* Typography */
   --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -57,13 +62,16 @@
 /* =====================================================
    RESET & FOUNDATION
    ===================================================== */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   min-height: 100vh;
   background-color: var(--bg-primary);
@@ -72,7 +80,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* Prevent horizontal scroll leakage during vertical phases */
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -83,7 +91,8 @@ html, body {
 /* =====================================================
    LENIS SMOOTH SCROLL SUPPORT
    ===================================================== */
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
@@ -239,10 +248,13 @@ html.lenis, html.lenis body {
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
 }
+
 .cursor-dot.crosshair::after {
   content: '';
   position: absolute;
-  top: 0; left: 11px;
-  width: 1px; height: 100%;
+  top: 0;
+  left: 11px;
+  width: 1px;
+  height: 100%;
   background-color: var(--accent-color);
 }
