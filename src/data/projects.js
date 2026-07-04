@@ -47,11 +47,15 @@ export const experience = [
     period: '06/2026 – Present',
     location: 'Remote',
     bullets: [
-      'Architected a scalable full-stack educational platform using React and FastAPI, integrating asynchronous PostgreSQL and Google OAuth 2.0 to deliver secure, role-based access control and lightning-fast data processing for administrative users.',
-      'Engineered a dynamic 6-tier curriculum hierarchy and bulk CSV/XLSX ingestion pipeline, utilizing dry-run validation algorithms to eliminate database duplication and streamline the onboarding of large-scale educational datasets.',
-      'Designed an extensible Multi-Provider AI architecture utilizing the Factory Design Pattern to automate the generation of curriculum-aligned content by seamlessly hot-swapping between OpenAI, Anthropic, and Groq LLMs.',
-      'Implemented robust PostgreSQL artifact persistence and custom API analytics engines to completely bypass Docker ephemeral storage failures.'
+      'Architected KAIROS Platform: Accomplished the deployment of a highly scalable AI educational platform, as measured by the dynamic generation of 9+ distinct learning artifact types (quizzes, mind maps, etc.) across a complex 6-tier curriculum hierarchy, by architecting a Multi-LLM Provider Factory pattern in Python/FastAPI to seamlessly orchestrate Claude, OpenAI, and Groq APIs.',
+      
+      'Engineered Hallucination Checker Agent: Ensured high-fidelity and factually accurate AI content generation, as measured by a fully automated 4-metric scoring system that successfully blocks unverified outputs before presentation, by engineering a customized validation pipeline that cross-references LLM outputs against ground-truth source materials.',
+      
+      'Managed Database Architecture: Maintained strict data integrity across a deeply nested platform architecture, as measured by zero orphaned records during massive curriculum hierarchy modifications, by architecting an asynchronous PostgreSQL 16 schema utilizing SQLAlchemy 2.0 with advanced cascade-delete relationships.',
+      
+      'Constructed Full-Stack Interface: Delivered a highly responsive, modern frontend workspace, as measured by seamless user navigation through deep cascaded data structures and secure sandboxed iframe previews, by developing a React 19 application utilizing asynchronous state management and a custom glassmorphism design system.'
     ],
+
   },
   {
     id: 'igcar',
