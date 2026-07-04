@@ -132,3 +132,24 @@
     padding: var(--space-5);
   }
 }
+
+/* =====================================================
+   Custom Layout for Projects.js inline style refactor
+   ===================================================== */
+.project-layout {
+  background-color: #1A1A1A;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: var(--space-lg);
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+  .project-layout {
+    grid-template-columns: 1fr;
+    padding: var(--space-md);
+    gap: var(--space-md);
+  }
+}

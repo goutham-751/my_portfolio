@@ -21,15 +21,7 @@ const ProjectCard = ({ project, index, smoothProgress, totalProjects }) => {
         marginBottom: 'var(--space-xl)',
       }}
     >
-      <div style={{
-        backgroundColor: '#1A1A1A',
-        border: '1px solid rgba(255,255,255,0.08)',
-        borderRadius: '16px',
-        padding: 'var(--space-lg)',
-        display: 'grid',
-        gridTemplateColumns: '1fr 1.5fr',
-        gap: 'var(--space-lg)',
-      }}>
+      <div className="project-layout">
         {/* Left: Meta */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
           <div className="text-mono" style={{ color: 'var(--accent-color)', fontSize: '0.8rem' }}>
@@ -52,26 +44,6 @@ const ProjectCard = ({ project, index, smoothProgress, totalProjects }) => {
             ))}
           </div>
 
-          {project.link && (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-mono"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                color: '#111', backgroundColor: '#F4F4F0',
-                padding: '0.6rem 1.2rem',
-                textDecoration: 'none', textTransform: 'none',
-                transition: 'all 0.2s ease', cursor: 'pointer',
-                marginTop: 'var(--space-sm)',
-                alignSelf: 'flex-start',
-                fontSize: '0.85rem'
-              }}
-            >
-              View Project ↗
-            </a>
-          )}
         </div>
 
         {/* Right: Bullets */}
@@ -84,6 +56,26 @@ const ProjectCard = ({ project, index, smoothProgress, totalProjects }) => {
               </li>
             ))}
           </ul>
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-mono"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                color: '#111', backgroundColor: '#F4F4F0',
+                padding: '0.6rem 1.2rem',
+                textDecoration: 'none', textTransform: 'none',
+                transition: 'all 0.2s ease', cursor: 'pointer',
+                marginTop: 'var(--space-lg)',
+                alignSelf: 'flex-start',
+                fontSize: '0.85rem'
+              }}
+            >
+              View Project ↗
+            </a>
+          )}
         </div>
       </div>
     </motion.div>
